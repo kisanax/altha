@@ -17,26 +17,71 @@ const stats = [
 
 const benefits = [
   {
-    icon: "📚",
+    icon: "regulasi",
     title: "Paham regulasi terbaru",
     desc: "Mengikuti perubahan ketentuan alat kesehatan dan prosedur perizinan berbasis risiko.",
   },
   {
-    icon: "💬",
+    icon: "transparan",
     title: "Transparan",
     desc: "Estimasi biaya dan timeline dijelaskan sejak awal, tanpa biaya tersembunyi.",
   },
   {
-    icon: "🤝",
+    icon: "pendampingan",
     title: "Pendampingan penuh",
     desc: "Termasuk saat audit sarana oleh instansi, sampai temuan dituntaskan.",
   },
   {
-    icon: "🌏",
+    icon: "remote",
     title: "Remote-friendly",
     desc: "Klien di luar Jakarta tetap terlayani melalui proses daring.",
   },
 ];
+
+function BenefitIcon({ name }: { name: string }) {
+  const paths: Record<string, React.ReactNode> = {
+    regulasi: (
+      <>
+        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z" />
+        <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20" />
+        <path d="M9 8h7M9 12h5" />
+      </>
+    ),
+    transparan: (
+      <>
+        <path d="M21 12a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5Z" />
+        <path d="M9 12h.01M12.5 12h.01M16 12h.01" />
+      </>
+    ),
+    pendampingan: (
+      <>
+        <path d="M12 3 4 6.5v5c0 4.3 3 8.2 8 9.5 5-1.3 8-5.2 8-9.5v-5L12 3Z" />
+        <path d="m9 12 2 2 4-4" />
+      </>
+    ),
+    remote: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+        <path d="M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z" />
+      </>
+    ),
+  };
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="h-7 w-7 text-brand-600"
+    >
+      {paths[name]}
+    </svg>
+  );
+}
 
 const steps = [
   {
@@ -316,9 +361,7 @@ export default function HomePage() {
             {benefits.map((item, index) => (
               <Reveal key={item.title} delay={(index % 4) * 90} className="h-full">
                 <div className="h-full rounded-xl border border-brand-100 bg-white p-6">
-                  <span className="text-3xl" aria-hidden="true">
-                    {item.icon}
-                  </span>
+                  <BenefitIcon name={item.icon} />
                   <h3 className="mt-4 text-base font-semibold text-brand-900">
                     {item.title}
                   </h3>

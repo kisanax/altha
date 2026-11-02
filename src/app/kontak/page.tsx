@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     "Hubungi kami untuk konsultasi gratis seputar pendirian PT, legalitas, dan perizinan usaha Anda.",
 };
 
+// Query untuk embed Google Maps. Koordinat diambil dari mapsUrl yang
+// di-resolve ke listing "PT. ALTHA VEER DIANDRI", ditambah nama daerah agar
+// pin terkait ke bisnis yang tepat.
+const googleMapsQuery = encodeURIComponent("PT. Altha Veer Diandri, Grogol, Depok");
+
 export default function KontakPage() {
   return (
     <>
@@ -112,6 +117,28 @@ export default function KontakPage() {
                 <span className="text-brand-700">{site.hours}</span>
               </li>
             </ul>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border border-brand-100 bg-white">
+            <div className="flex items-center justify-between gap-4 px-6 pb-4 pt-5">
+              <h2 className="text-base font-semibold text-brand-900">Lokasi kami</h2>
+              <a
+                href={site.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 text-sm font-medium text-brand-700 hover:text-brand-900"
+              >
+                Buka di Google Maps
+              </a>
+            </div>
+            <iframe
+              src={`https://maps.google.com/maps?q=${googleMapsQuery}&z=17&output=embed`}
+              title="Lokasi kantor PT Altha Veer Diandri di Google Maps"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              className="block h-64 w-full border-0"
+            />
           </div>
 
           <div className="rounded-2xl bg-brand-800 p-6 text-brand-100">

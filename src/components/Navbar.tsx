@@ -177,13 +177,16 @@ export function Navbar() {
         aria-hidden="true"
         className={`pointer-events-none absolute inset-0 transition-colors duration-300 ${
           solid
-            ? "bg-white shadow-[0_1px_3px_0_rgb(0_0_0/0.06)] backdrop-blur"
+            ? /* Latar putih sudah opaque: backdrop-blur dihapus karena tidak
+                 ber efek visual apa pun selain memicu smear/ artefak
+                 komposit saat panel dropdown terbuka (garis abu-abu). */
+              "bg-white shadow-[0_1px_3px_0_rgb(0_0_0/0.06)]"
             : "bg-gradient-to-b from-brand-900/70 via-brand-900/25 to-transparent"
         }`}
       />
 
       <div
-        className={`container-page relative flex items-center justify-between gap-3 transition-all ${
+        className={`container-page relative flex items-center justify-between gap-3 transition-[height] ${
           scrolled ? "h-16 sm:h-20" : "h-20 sm:h-24"
         }`}
       >
